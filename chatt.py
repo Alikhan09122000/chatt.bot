@@ -4,7 +4,7 @@ from flask import Flask, request
 
 TOKEN = '7850920014:AAFAsa_8brgmaRj2oIaszF7BhEFceodWNZc'
 bot = telebot.TeleBot(TOKEN)
-app = Flask(name)
+app = Flask(__name__)  # ✅ to‘g‘rilandi
 
 waiting_users = []
 paired_users = {}
@@ -109,9 +109,10 @@ def receive_update():
 def index():
     return "Bot ishlayapti!", 200
 
-if name == "main":
+if __name__ == "__main__":
     import os
     port = int(os.environ.get("PORT", 5000))
     bot.remove_webhook()
-    bot.set_webhook(url=f"https://chatt.bot.onrender.com/{TOKEN}")
+    bot.set_webhook(url=f"https://chatt-bot-mhh6.onrender.com/{TOKEN}")
     app.run(host="0.0.0.0", port=port)
+

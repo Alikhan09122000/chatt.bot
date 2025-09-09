@@ -2,7 +2,10 @@
 import telebot
 from flask import Flask, request
 
-TOKEN = '7850920014:AAHqKq_qpALnsJQQqQYulsOMack3wA4K2G8'
+# Tokenni environmentdan olish (Railway → Variables ichiga qo'yasan)
+TOKEN = os.getenv("BOT_TOKEN")
+if not TOKEN:
+    raise ValueError("❌ BOT_TOKEN environment variable topilmadi!")
 bot = telebot.TeleBot(TOKEN)
 app = Flask(__name__)  # ✅ to‘g‘rilandi
 
@@ -115,6 +118,7 @@ if __name__ == "__main__":
     bot.remove_webhook()
     bot.set_webhook(url=f"https://chatt-bot-mhh6.onrender.com/{TOKEN}")
     app.run(host="0.0.0.0", port=port)
+
 
 
 
